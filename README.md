@@ -29,6 +29,7 @@ email: justin@skitlabs.net
     <p align="center">
         An awesome DIY projects that will help you get better consistent roasts by measuring roast color between batches
         <br />
+        The njdor fork provides CAD models and code to run this on budget aliexpress OLED screens and ESP32-s3 (or any mcu really).
         <br />
         <a href="https://github.com/juztins-lab/roast-meter/issues">Report Bug</a>
         •
