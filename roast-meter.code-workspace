@@ -1,9 +1,12 @@
 {
-  "folders": [
-	{
-		"name": "roast-meter",
-		"path": "."
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"cmath": "cpp"
+		}
 	}
-],
-  "settings": {}
 }

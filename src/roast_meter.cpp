@@ -4,6 +4,9 @@
 
 #include "MAX30105.h"
 
+const int I2C_SDA = D4; //can be any pin on ESP32s3, using defaults
+const int I2C_SCL = D5; //can be any pin on ESP32s3, using defaults
+
 #define PIN_RESET 9
 #define DC_JUMPER 1
 
@@ -24,7 +27,7 @@ void displayMeasurement(int rLevel) {
   oled.clear(PAGE);
   oled.setCursor(0, 0);
 
-  int calibratedReading = f(rLevel);
+  int calibratedReading = (rLevel);
   int centerPadding = 4 - String(calibratedReading).length();
   String paddingText = multiplyChar(' ', centerPadding);
 
@@ -56,7 +59,7 @@ int f(int x) {
 void setup() {
   Serial.begin(9600);
 
-  Wire.begin();
+  Wire.begin(I2C_SDA, I2C_SCL);
   oled.begin();      // Initialize the OLED
   oled.clear(ALL);   // Clear the display's internal memory
   oled.clear(PAGE);  // Clear the buffer.
