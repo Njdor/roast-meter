@@ -29,6 +29,7 @@ email: justin@skitlabs.net
     <p align="center">
         An awesome DIY projects that will help you get better consistent roasts by measuring roast color between batches
         <br />
+        The njdor fork provides CAD models and code to run this on budget aliexpress OLED screens and ESP32-s3 (or any mcu really).
         <br />
         <a href="https://github.com/juztins-lab/roast-meter/issues">Report Bug</a>
         •
@@ -64,6 +65,13 @@ Here's why:
 * At the end of the guide you will have an ~100$ roast meter, that is consistent and can help you get the most out of your roast.
 
 Check out our wiki for detailed instructions for assembly usage and calibration!
+
+## njdor's Version BOM - Follow Juztin's BOM but swap below parts
+1x 0.96 Inch OLED Display Module SSD1306 I2C IIC SPI Serial 128X64 - get the one with slotted connections\
+1x ESP32-S3 - Either SEEED Studio XIAO S3 or the SuperMini from Aliexpress\
+8x M3-8mm (for printable shield and screwing case together, Juztin's docs are out of date with his design). Use M3-4mm if not using shield\
+4x M1.6-6mm (for ali oled, if using)\
+
 
 ## Assembly Instructions
 https://github.com/juztins-lab/roast-meter/wiki/Roast-Meter-Assembly-Instructions
