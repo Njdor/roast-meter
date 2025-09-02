@@ -5,13 +5,16 @@
 #include "MAX30105.h"
 
 #ifdef ARDUINO_XIAO_ESP32S3
-  const int I2C_SDA = D4; //can be any pin on ESP32s3, using defaults
-  const int I2C_SCL = D5; //can be any pin on ESP32s3, using defaults
+  const int I2C_SDA = D4; //can be any pin on ESP32s3
+  const int I2C_SCL = D5; //can be any pin on ESP32s3
 //#elif 
 #elif ESP32S3_SUPERMINI
-  const int I2C_SDA = 5; //can be any pin on ESP32s3, using defaults
-  const int I2C_SCL = 6; //can be any pin on ESP32s3, using defaults
+  const int I2C_SDA = 5; //can be any pin on ESP32s3
+  const int I2C_SCL = 6; //can be any pin on ESP32s3
 
+#else
+  const int I2C_SDA = 5; //Set to the pins for your MCU (if not using build flags)
+  const int I2C_SCL = 6; //Set to the pins for your MCU (if not using build flags)
 #endif
 
 #define PIN_RESET 9
