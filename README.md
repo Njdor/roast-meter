@@ -69,8 +69,7 @@ Check out our wiki for detailed instructions for assembly usage and calibration!
 ## njdor's Version BOM - Follow Juztin's BOM but swap below parts
 1x 0.96 Inch OLED Display Module SSD1306 I2C IIC SPI Serial 128X64 - get the one with slotted connections\
 1x ESP32-S3 - Either SEEED Studio XIAO S3 or the SuperMini from Aliexpress\
-4x M3-8mm (for printable shield, Juztin's docs are out of date with his design). Use M3-4mm if not using shield\
-4x M3-16mm (for screwing case together)\
+8x M3-8mm (for printable shield and screwing case together, Juztin's docs are out of date with his design). Use M3-4mm if not using shield\
 4x M1.6-6mm (for ali oled, if using)\
 
 
