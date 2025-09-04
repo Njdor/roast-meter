@@ -1,5 +1,6 @@
 // VERSION 1.0.1-beta
-#include <SFE_MicroOLED.h>
+
+#include <U8g2lib.h>
 #include <Wire.h>
 
 #include "MAX30105.h"
@@ -18,45 +19,34 @@
 #endif
 
 #define PIN_RESET 9
-#define DC_JUMPER 1
+#define DC_JUMPER 0  //probably zero address, not 1 address
 
 MAX30105 particleSensor;
-MicroOLED oled(PIN_RESET, DC_JUMPER);
-
+U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, I2C_SCL, I2C_SDA, U8X8_PIN_NONE);
 long unblockedValue;  // Average IR at power up
 
-String multiplyChar(char c, int n) {
-  String result = "";
-  for (int i = 0; i < n; i++) {
-    result += c;
-  }
-  return result;
-}
 
 void displayMeasurement(int rLevel) {
-  oled.clear(PAGE);
-  oled.setCursor(0, 0);
-
+  u8g2.clearBuffer();
+  
   int calibratedReading = (rLevel);
-  int centerPadding = 4 - String(calibratedReading).length();
-  String paddingText = multiplyChar(' ', centerPadding);
 
   if (rLevel == 0) {
-    oled.setFontType(1);
-    oled.print("Please load   sample!");
-    oled.display();
+    u8g2.setFont(u8g2_font_ncenB08_tr);
+    u8g2.drawStr(0, 40, "Please Load Sample!");
+    u8g2.sendBuffer();
     return;
   }
-
-  oled.setFontType(3);
-  oled.print(paddingText);
-  oled.print(calibratedReading);
+  char buf[10];
+  itoa(calibratedReading, buf, 10);
+  u8g2.setFont(u8g2_font_ncenB14_tr);
+  u8g2.drawStr(40,35, buf);
 
   Serial.println("real:" + String(rLevel));
   Serial.println("agtron:" + String(calibratedReading));
   Serial.println("===========================");
 
-  oled.display();
+  u8g2.sendBuffer();
 }
 
 int f(int x) {
@@ -70,12 +60,9 @@ void setup() {
   Serial.begin(9600);
 
   Wire.begin(I2C_SDA, I2C_SCL);
-  oled.begin();      // Initialize the OLED
-  oled.clear(ALL);   // Clear the display's internal memory
-  oled.clear(PAGE);  // Clear the buffer.
+  u8g2.begin();
 
   delay(100);  // Delay 100 ms
-  oled.setFontType(3);
 
   // Initialize sensor
   if (particleSensor.begin(Wire, I2C_SPEED_FAST) == false)  // Use default I2C port, 400kHz speed
@@ -109,7 +96,7 @@ void setup() {
 void loop() {
   int rLevel = particleSensor.getIR();
   long currentDelta = rLevel - unblockedValue;
-
+  Serial.println(rLevel);
   if (currentDelta > (long)100) {
     displayMeasurement(rLevel / 1000);
   } else {
